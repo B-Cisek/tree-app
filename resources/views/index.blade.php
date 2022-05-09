@@ -19,20 +19,34 @@
             <div class="container flex-column">
                 <form name="dodaj_wezel" method="post" action="{{ route('add') }}" id="dodaj_wezel">
                     @csrf
-                    <input name="text" placeholder="nazwa nowego węzła" type="text" class="form-control" required>
+                    <input name="text" placeholder="nazwa nowego węzła" type="text" class="form-control">
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger mt-2 h-5" role="alert">
+                            @foreach ($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                            @endforeach
+                        </div>
+                    @endif
                     <select name="rodzic" id="rodzic" class="form-select mt-2" >
                         @foreach($category as $key => $cat)
                         <option value="{{ $cat->id }}">{{ $cat->text }}</option>
                         @endforeach
                     </select>
-                    <input type="submit" value="Dodaj" name="" id="" class="btn btn-danger mt-2">
+                        <input type="submit" value="Dodaj" name="" id="" class="btn btn-danger mt-2">
                 </form>
             </div>
 
             <div class="container flex-column">
                 <form name="edytuj-wezel" method="post" action="{{ route('update') }}" id="edytuj-wezel">
                     @csrf
-                    <input name="text" placeholder="nowa nazwa węzła" type="text" class="form-control" required>
+                    <input name="text" placeholder="nowa nazwa węzła" type="text" class="form-control">
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger mt-2 h-5" role="alert">
+                            @foreach ($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                            @endforeach
+                        </div>
+                    @endif
                     <select name="wezel" id="rodzic" class="form-select mt-2" >
                         @foreach($category as $key => $cat)
                             <option value="{{ $cat->id }}">{{ $cat->text }}</option>

@@ -17,6 +17,11 @@ class IndexController extends Controller
     }
 
     function add(Request $request){
+
+        $request->validate([
+            'text' => 'required|max:20'
+        ]);
+
         DB::table('categories')->insert(
             ['text' => $request->text, 'parent' => $request->rodzic]
         );
@@ -24,6 +29,11 @@ class IndexController extends Controller
     }
 
     function update(Request $request){
+
+        $request->validate([
+            'text' => 'required|max:20'
+        ]);
+        
         DB::table('categories')
             ->where('id', $request->wezel)
             ->update(['text' => $request->text]);
