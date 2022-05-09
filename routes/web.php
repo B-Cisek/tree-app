@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\TreeController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [IndexController::class, 'show']);
+Route::post('/', [IndexController::class, 'add'])->name('add');
+Route::post('/update', [IndexController::class, 'update'])->name('update');
+Route::post('/delate', [IndexController::class, 'delete'])->name('delete');
+
+
 
 
 Route::get('/db-test', function (){
